@@ -35,20 +35,26 @@ if (isset($_POST['m_username'])) {
         $_SESSION["m_phone"] = $row["m_phone"];
 
 
-        if ($_SESSION["m_level"] == "ADMIN") { //ถ้าเป็น admin ให้กระโดดไปหน้า admin_page.php
+        if ($_SESSION["m_level"] == "ADMIN") { //ถ้าเป็น admin ให้กระโดดไปหน้า admin page
 
             //echo 'R U ADMIN';
-            
-            
+            $ref_m_id = $_SESSION["m_id"];
+            $sql2 = "INSERT INTO tbl_login_log (ref_m_id) VALUES ($ref_m_id)";
+            $result2 = mysqli_query($conn, $sql2) or die("Error in query: $sql " . mysqli_error($conn));
+
 
             Header("Location: databoad/admin/");
         }
 
 
+        if ($_SESSION["m_level"] == "SELLER"){
+            Header("Location: databoad/seller/");
+        }
+
 
         
 
-        if ($_SESSION["m_level"] == "MEMBER") {  //ถ้าเป็น member ให้กระโดดไปหน้า user_page.php
+        if ($_SESSION["m_level"] == "MEMBER") {  //ถ้าเป็น member ให้กระโดดไปหน้า user page
             //echo 'R U MEMBER';
 
             //insert login log

@@ -1,48 +1,57 @@
-<?php session_start(); ?>
+<!doctype html>
+<html lang="en">
 
-<link rel="stylesheet" href="css/bootstrap-login.css">
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="form_login/fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="form_login/css/owl.carousel.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="form_login/css/bootstrap.min.css">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="form_login/css/style.css">
+
+    <title>Login Shop2Hand</title>
+</head>
 
 <body>
-    <style>
-        body {
-            background-image: url('img/bgwebb.jpg');
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-attachment: fixed;
-        }
-    </style>
 
-    <form action="chklogin.php" method="post" class="form-horizontal">
 
-        <div id="login">
+    <div class="half">
+        <div class="bg order-1 order-md-2" style="background-image: url('form_login/images/bgwebb.jpg');"></div>
+        <div class="contents order-2 order-md-1">
+
             <div class="container">
-                <div id="login-row" class="row justify-content-center align-items-center">
-                    <div id="login-column" class="col-md-5">
-                        <div id="login-box" class="col-md-12">
-                            <form id="login-form" class="form" action="" method="post">
-                                <h3 class="text-center text-info">เข้าสู่ระบบ</h3>
-                                <div class="form-group">
-                                    <label for="username" class="text-info">ชื่อผู้ใช้:</label><br>
-                                    <input type="text" name="m_username" id="username" class="form-control">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-md-6">
+                        <div class="form-block">
+                            <div class="text-center mb-5">
+                            <i class="fas fa-home"></i>
+
+                                <h3>  <strong>หน้าเข้าสู่ระบบ</strong></h3>
+                                <!-- <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p> -->
+                            </div>
+                            <form action="chklogin.php" method="post">
+                                <div class="form-group first">
+                                    <label for="username">ชื่อผู้ใช้งาน</label>
+                                    <input type="text" class="form-control" placeholder="ชื่อผู้ใช้งาน" name="m_username" id="username">
                                 </div>
-                                <div class="form-group">
-                                    <label for="password" class="text-info">รหัสผ่าน:</label><br>
-                                    <input type="password" name="m_password" id="password" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <input type="submit" name="submit" class="btn btn-info btn-md" value="เข้าสู่ระบบ">
-                                    <h6 align='right'>
-                                        <a>ยังไม่มีบัญชี? </a>
-                                        <a class="btn btn-success" href="databoad/register.php">
-                                             สมัครสมาชิก
-                                        </a>
-                                    </h6>
+                                <div class="form-group last mb-3">
+                                    <label for="password">รหัสผ่าน</label>
+                                    <input type="password" class="form-control" placeholder="รหัสผ่านของคุณ" name="m_password" id="password">
                                 </div>
 
+                                <div class="d-sm-flex mb-5 align-items-center">
+                                    <span class="ml-auto"><a href="databoad/register.php" class="forgot-pass">ยังไม่มีบัญชี ?</a></span>
+                                </div>
+
+                                <input type="submit" value="เข้าสู่ระบบ" class="btn btn-block btn-info">
 
                             </form>
                         </div>
@@ -50,5 +59,14 @@
                 </div>
             </div>
         </div>
-    </form>
+
+
+    </div>
+    
+    <script src="form_login/js/jquery-3.3.1.min.js"></script>
+    <script src="form_login/js/popper.min.js"></script>
+    <script src="form_login/js/bootstrap.min.js"></script>
+    <script src="form_login/js/main.js"></script>
 </body>
+
+</html>

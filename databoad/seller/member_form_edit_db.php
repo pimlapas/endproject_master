@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <?php
 //condb
-include('../condb.php'); 
+include('../../conn.php'); 
 
 // echo '<pre>';
 // print_r($_POST);
@@ -9,16 +9,15 @@ include('../condb.php');
 
 // exit();
 
-
-
-	$m_username = $_POST["m_username"];
-	$m_password = sha1($_POST["m_password"]);
 	$m_fname = $_POST["m_fname"];
 	$m_name = $_POST["m_name"];
 	$m_lname = $_POST["m_lname"];
+	$m_address = $_POST["m_address"];
 	$m_email = $_POST["m_email"];
 	$m_phone = $_POST["m_phone"];
 	$m_level = $_POST["m_level"];
+	$m_img2 = $_POST["m_img2"];
+	$m_id  = $_POST["m_id"];
 
 	$date1 = date("Ymd_His");
 	$numrand = (mt_rand());
@@ -35,72 +34,37 @@ include('../condb.php');
 		$path_link="../mimg/".$newname;
 		//คัดลอกไฟล์ไปยังโฟลเดอร์
 		move_uploaded_file($_FILES['m_img']['tmp_name'],$path_copy);  
+	}else{
+		$newname=$m_img2;
 	}
 
+	//update data 
+	$sql = "UPDATE tbl_member SET 
+	m_fname='$m_fname',
+	m_name='$m_name',
+	m_lname='$m_lname',
+	m_address='$m_address',
+	m_email='$m_email',
+	m_phone='$m_phone',
+	m_img='$newname',
+	m_level='$m_level'
+	WHERE m_id=$m_id
+	 ";
 
-
-	//เช็คซ้ำ 
-	$check = "
-	SELECT m_username, m_email 
-	FROM tbl_member  
-	WHERE m_username = '$m_username' 
-	OR m_email='$m_email'
-	";
-    $result1 = mysqli_query($conn, $check) or die(mysqli_error());
-    $num=mysqli_num_rows($result1);
-
-    //echo $num;
-
-    //exit;
-    if($num > 0)
-    {
-	    echo "<script>";
-	    echo "alert(' ข้อมูลซ้ำ กรุณาเพิ่มใหม่อีกครั้ง !');";
-	    echo "window.history.back();";
-	    echo "</script>";
-    }else{
-
-	
-	//เพิ่มเข้าไปในฐานข้อมูล
-	$sql = "INSERT INTO tbl_member
-	(
-	m_username,
-	m_password,
-	m_fname,
-	m_name,
-	m_lname,
-	m_email,
-	m_phone,
-	m_img,
-	m_level
-	)
-	VALUES
-	(
-	'$m_username',
-	'$m_password',
-	'$m_fname',
-	'$m_name',
-	'$m_lname',
-	'$m_email',
-	'$m_phone',
-	'$newname',
-	'$m_level'
-	)";
-
-	$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+	$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
 
 	// echo '<pre>';
 	// echo $sql;
 	// echo '</pre>';
 	// exit;
-	}//close chk duplicat username
+	
 	//ปิดการเชื่อมต่อ database
 	mysqli_close($conn);
 	//จาวาสคริปแสดงข้อความเมื่อบันทึกเสร็จและกระโดดกลับไปหน้าฟอร์ม
 	
 	if($result){
 	echo "<script type='text/javascript'>";
-	echo "alert('เพิ่มข้อมูลสำเร็จ');";
+	echo "alert('แก้ไขข้อมูลสำเร็จ');";
 	echo "window.location = 'member.php'; ";
 	echo "</script>";
 	}else{

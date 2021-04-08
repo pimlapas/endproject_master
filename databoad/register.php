@@ -1,164 +1,154 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>หน้าสมัครสมาชิก</title>
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/style.css" rel="stylesheet">
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>Register Shop2Hand</title>
+
+    <!-- Icons font CSS-->
+    <link href="form_register/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="form_register/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link
+        href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="form_register/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="form_register/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="form_register/css/main.css" rel="stylesheet" media="all">
 </head>
 
 <body>
+    <div class="page-wrapper bg-gra-01 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h2 class="title"><center>สมัครสมาชิก</center></h2>
+                    <form action="member_form_add_db.php" method="POST" class="form-horizontal" enctype="multipart/form-data">
 
+                        <div class="input-group">
+                            <label class="label">- สิทธิ์การใช้งาน -</label>
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                <select name="m_level">
+                                    <option disabled="disabled" selected="selected">เลือกสิทธิ์การใช้งาน</option>
+                                    <option value="MEMBER">ผู้ซื้อ</option>
+                                    <option value="SELLER">ผู้ขาย</option>
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
+                        </div>
 
-  <!-- start menu -->
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <nav class="navbar navbar-default">
-          <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
+                        <div class="input-group">
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <label class="label">ชื่อผู้ใช้งาน</label>
+                                    <input class="input--style-4" type="text" name="m_username" required autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
 
-              <a class="navbar-brand" href="../index.php">HOME</a>
+                        <div class="input-group">
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <label class="label">รหัสผ่าน</label>
+                                    <input class="input--style-4" type="password" name="m_password" required>
+                                </div>
+                            </div>
+                        </div>
+
+                       
+
+                        <div class="input-group">
+                            <label class="label">คำนำหน้าชื่อ</label>
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                <select name="m_fname"  required>
+                                    <option disabled="disabled" selected="selected">- โปรดเลือกคำนำหน้าชื่อ -</option>
+                                    <option>นาย</option>
+                                    <option>นาง</option>
+                                    <option>นางสาว</option>
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
+                        </div>
+
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">ชื่อจริง</label>
+                                    <input class="input--style-4" type="text" name="m_name" required>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">นามสกุล</label>
+                                    <input class="input--style-4" type="text" name="m_lname" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <label class="label">ที่อยู่</label>
+                                    <input class="input--style-4" type="address" name="m_address" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">อีเมล</label>
+                                    <input class="input--style-4" type="email" name="m_email" required>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">เบอร์โทรศัพท์</label>
+                                    <input class="input--style-4" type="text" name="m_phone" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <label class="label">รูปภาพ</label>
+                                    <input type="file" name="m_img" required class="form-control" accept="image/*">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-t-15">
+                            <button class="btn btn--radius-2 btn--blue" type="submit">สมัครสมาชิก</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-
-          </div><!-- /.container-fluid -->
-        </nav>
-      </div>
+        </div>
     </div>
-  </div>
-  <!-- end menu -->
 
-  <!-- start form login-->
-  <div class="container">
-    <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-5">
-        <h4> สมัครสมาชิก </h4>
-        <form action="member_form_add_db.php" method="post" class="form-horizontal" enctype="multipart/form-data">
+    <!-- Jquery JS-->
+    <script src="form_register/vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="form_register/vendor/select2/select2.min.js"></script>
+    <script src="form_register/vendor/datepicker/moment.min.js"></script>
+    <script src="form_register/vendor/datepicker/daterangepicker.js"></script>
 
-          <div class="col-sm-2 control-label">
-            สถานะ:
-          </div>
-          <div class="form-group">
-            <select name="m_level" class="col-sm-2 control-label" required style="width:100px;">
-              <option value="MEMBER">สมาชิก</option>
-            </select>
-          </div>
+    <!-- Main JS-->
+    <script src="form_register/js/global.js"></script>
 
-          <div class="form-group">
-            <div class="col-sm-2 control-label">
-              Username:
-            </div>
-            <div class="col-sm-4">
-              <input type="text" name="m_username" required class="form-control" autocomplete="off">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-2 control-label">
-              Password:
-            </div>
-            <div class="col-sm-4">
-              <input type="password" name="m_password" required class="form-control">
-            </div>
-          </div>
-
-
-          <div class="col-sm-2 control-label">
-            Fname:
-          </div>
-
-          <div class="form-group">
-            <select name="m_fname" class="col-sm-2 control-label" required style="width:100px;">
-              <option value="นาย">นาย</option>
-              <option value="นาง">นาง</option>
-              <option value="นางสาว">นางสาว</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <div class="col-sm-2 control-label">
-              Name:
-            </div>
-            <div class="col-sm-4">
-              <input type="text" name="m_name" required class="form-control">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-2 control-label">
-              Lastname:
-            </div>
-            <div class="col-sm-4">
-              <input type="text" name="m_lname" required class="form-control">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-2 control-label">
-              Address:
-            </div>
-            <div class="col-sm-6">
-              <input type="text" name="m_address" required class="form-control">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-2 control-label">
-              E-mail:
-            </div>
-            <div class="col-sm-6">
-              <input type="email" name="m_email" required class="form-control">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-2 control-label">
-              Phone:
-            </div>
-            <div class="col-sm-6">
-              <input type="text" name="m_phone" required class="form-control">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="col-sm-2 control-label">
-              Photo:
-            </div>
-            <div class="col-sm-6">
-              <input type="file" name="m_img" required class="form-control" accept="image/*">
-            </div>
-          </div>
-          <br>
-
-          <div class="form-group">
-            <div class="col-sm-2">
-            </div>
-            <div class="col-sm-4">
-              <button type="submit" class="btn btn-primary">สมัครสมาชิก</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  <!-- end form-->
-
-  <!-- start footer -->
-  <div class="container ft">
-    <div class="row">
-      <div class="col-xs-12 col-md-12">
-        <p align="center" class="ft">
-
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <!-- end footer -->
-
-</body>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 
 </html>
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<!-- end document-->
