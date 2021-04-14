@@ -5,7 +5,8 @@
 		ตรวจสอบการชำระเงิน
 	</a>
 	<a href="prd.php" class="list-group-item">สินค้า</a>
-	<a href="prdtype.php" class="list-group-item">ประเภทสินค้า</a>
+	<a href="bankaccount.php" class="list-group-item">บัญชีธนาคาร</a>
+
 	<a href="comment.php" class="list-group-item">ความคิดเห็น</a>
 
 	<a href="../logout.php" onclick="return confirm('Confirm?');" class="list-group-item list-group-item-danger">ออกจากระบบ</a>

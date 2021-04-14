@@ -42,9 +42,10 @@ $m_id = mysqli_real_escape_string($conn, $_POST["m_id"]);
 //$total_qty = $_POST["total_qty"];
 $total = mysqli_real_escape_string($conn, $_POST["total"]); //ราคารวมทั้งตะกร้า
 $dttm = Date("Y-m-d G:i:s");
+$ors_id = mysqli_real_escape_string($conn, $_POST["ors_id"]);
 //บันทึกการสั่งซื้อลงใน order_detail
 mysqli_query($conn, "BEGIN");
-$sql1    = "INSERT INTO order_head VALUES(null, '$m_id', '$dttm', '$name', '$address', '$email', '$phone', '$total', 1, 0, '', '0000-00-00', 0, '', '0000-00-00')";
+$sql1    = "INSERT INTO order_head VALUES(null, '$m_id', '$dttm', '$name', '$address', '$email', '$phone', '$total', 1, 0, '', '0000-00-00', 0, '', '0000-00-00', $ors_id)";
 $query1    = mysqli_query($conn, $sql1) or die("Error in query; $sql1" . mysqli_error($sql1));
 //ฟังก์ชั่น MAX() จะคืนค่าที่มากที่สุดในคอลัมน์ที่ระบุ ออกมา หรือจะพูดง่ายๆก็ว่า ใช้สำหรับหาค่าที่มากที่สุด นั่นเอง.
 

@@ -75,6 +75,7 @@ $result = mysqli_query($conn, $query);
     </div>
     <div class="col-sm-4">
        <input type="hidden" name="ref_m_id"  value="<?php echo $m_id;?>">
+      <input type="hidden" name="p_m_name" value="<?php echo $m_name;?>">
       <button type="submit" class="btn btn-primary">บันทึก</button>
     </div>
   </div>

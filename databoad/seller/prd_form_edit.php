@@ -103,10 +103,7 @@ $result2 = mysqli_query($conn, $query);
       <input type="hidden" name="p_img2" value="<?php echo $row['p_img'];?>">
       <input type="hidden" name="p_id" value="<?php echo $row['p_id'];?>">
       
-      <input type="text" name="p_m_name" value="<?php echo $m_name;?>">
-      <input type="text" name="p_m_edit_date" value="<?php echo date('Y-m-d H:i:s');?>">
-      <input type="text" name="ref_m_id" value="<?php echo $m_id;?>">
-
+     
       <button type="submit" class="btn btn-primary">บันทึก</button>
     </div>
   </div>

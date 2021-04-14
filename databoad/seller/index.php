@@ -1,21 +1,21 @@
   <?php include('hder.php'); //css 
 
-  $querystatus1 = "SELECT o_status, COUNT(o_id) as s1total FROM order_head WHERE o_status = 1 GROUP BY o_status";
+  $querystatus1 = "SELECT o_status, COUNT(o_id) as s1total FROM order_head WHERE o_status = '1' and $m_id = ors_id GROUP BY o_status " ;
   $rs1 = mysqli_query($conn, $querystatus1);
   $rows1 = mysqli_fetch_array($rs1);
   //  echo $querystatus1;
 
-  $querystatus2 = "SELECT o_status, COUNT(o_id) as s2total FROM order_head WHERE o_status = 2 GROUP BY o_status";
+  $querystatus2 = "SELECT o_status, COUNT(o_id) as s2total FROM order_head WHERE o_status = '2' and $m_id = ors_id GROUP BY o_status";
   $rs2 = mysqli_query($conn, $querystatus2);
   $rows2 = mysqli_fetch_array($rs2);
   // echo $querystatus2;
 
-  $querystatus3 = "SELECT o_status, COUNT(o_id) as s3total FROM order_head WHERE o_status = 3 GROUP BY o_status";
+  $querystatus3 = "SELECT o_status, COUNT(o_id) as s3total FROM order_head WHERE o_status = '3' and $m_id = ors_id GROUP BY o_status";
   $rs3 = mysqli_query($conn, $querystatus3);
   $rows3 = mysqli_fetch_array($rs3);
   // echo $querystatus3;
 
-  $querystatus4 = "SELECT o_status, COUNT(o_id) as s4total FROM order_head WHERE o_status = 4 GROUP BY o_status";
+  $querystatus4 = "SELECT o_status, COUNT(o_id) as s4total FROM order_head WHERE o_status = '4' and $m_id = ors_id GROUP BY o_status";
   $rs4 = mysqli_query($conn, $querystatus4);
   $rows4 = mysqli_fetch_array($rs4);
   // echo $querystatus4;

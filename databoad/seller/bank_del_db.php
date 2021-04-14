@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <?php
 //condb
-include('../condb.php'); 
+include('../../conn.php'); 
 
 // echo '<pre>';
 // print_r($_GET);
@@ -10,10 +10,10 @@ include('../condb.php');
 // exit();
 
 
-	$ID  = mysqli_real_escape_string($conn,$_GET["ID"]);
+	$ID  = $_GET["ID"];
 
 	//delete data 
-	$sql = "DELETE FROM tbl_prd_type WHERE t_id=$ID";
+	$sql = "DELETE FROM tbl_bank WHERE b_id=$ID";
 
 	$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
 
@@ -29,12 +29,12 @@ include('../condb.php');
 	if($result){
 	echo "<script type='text/javascript'>";
 	//echo "alert('แก้ไขข้อมูลสำเร็จ');";
-	echo "window.location = 'prdtype.php'; ";
+	echo "window.location = 'bankaccount.php'; ";
 	echo "</script>";
 	}else{
 	echo "<script type='text/javascript'>";
 	//echo "alert('Error!!');";
-	echo "window.location = 'prdtype.php'; ";
+	echo "window.location = 'bankaccount.php'; ";
 	echo "</script>";
 }
 ?>

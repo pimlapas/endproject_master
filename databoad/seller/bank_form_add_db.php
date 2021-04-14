@@ -10,35 +10,38 @@ include('../../conn.php');
 // exit();
 
 
-	$t_name = mysqli_real_escape_string($conn, $_POST["t_name"]);
+    $b_name = $_POST["b_name"];
+    $b_number = $_POST["b_number"];
+    $b_owner = $_POST["b_owner"];
+    $s_id = $_POST["s_id"];
+
+	
 
 
-//เช็คซ้ำ 
-	$check = "SELECT  t_name FROM tbl_prd_type WHERE t_name = '$t_name' ";
-    $result1 = mysqli_query($conn, $check) or die(mysqli_error($conn));
-    $num=mysqli_num_rows($result1);
-
-    // echo $num;
-
-    // exit();
-
-    //echo $num;
-
-    //exit;
-    if($num > 0)
-    {
-    echo "<script>";
-    echo "alert(' ข้อมูลซ้ำ กรุณาเพิ่มใหม่อีกครั้ง !');";
-    echo "window.history.back();";
-    echo "</script>";
-    }else{
+	
 	
 	//เพิ่มเข้าไปในฐานข้อมูล
-	$sql = "INSERT INTO tbl_prd_type (t_name) VALUES ('$t_name')";
+	$sql = "INSERT INTO tbl_bank
+	(
+	b_name,
+    b_number,
+    b_owner,
+    s_id
+	)
+	VALUES
+	(
+	'$b_name',
+	'$b_number',
+	'$b_owner',
+	'$s_id'
+	
+	)";
+
 	$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
 
-}
+	// echo '<pre>';
 	// echo $sql;
+	// echo '</pre>';
 	// exit;
 	
 	//ปิดการเชื่อมต่อ database
@@ -48,12 +51,16 @@ include('../../conn.php');
 	if($result){
 	echo "<script type='text/javascript'>";
 	echo "alert('เพิ่มข้อมูลสำเร็จ');";
-	echo "window.location = 'prdtype.php'; ";
+	echo "window.location = 'bankaccount.php'; ";
 	echo "</script>";
 	}else{
 	echo "<script type='text/javascript'>";
-	//echo "alert('Error!!');";
-	echo "window.location = 'prdtype.php'; ";
+	echo "alert('Error!!');";
+	echo "window.location = 'bankaccount.php'; ";
 	echo "</script>";
 }
 ?>
+
+
+
+

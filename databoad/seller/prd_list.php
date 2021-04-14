@@ -4,8 +4,8 @@ $query = " SELECT p.*,m.m_name, t.t_name
 FROM tbl_prd as p
 LEFT JOIN tbl_member as m ON p.ref_m_id=m.m_id
 LEFT JOIN tbl_prd_type as t ON p.ref_t_id=t.t_id
+WHERE m_id=$m_id
 ORDER BY p.p_id ASC" or die("Error:" . mysqli_error($conn));
-
 
 //3.เก็บข้อมูลที่ query ออกมาไว้ในตัวแปร result . 
 $result = mysqli_query($conn, $query);

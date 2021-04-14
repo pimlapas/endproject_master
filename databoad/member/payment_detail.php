@@ -6,7 +6,7 @@ $querycartdetail = "SELECT d.*,p.p_img, p.p_name, p.p_price, h.*, b.b_name, b.b_
  INNER JOIN order_head as h ON d.o_id = h.o_id
  INNER JOIN tbl_prd as p ON d.p_id = p.p_id
  INNER JOIN tbl_bank as b ON h.b_id = b.b_id
- WHERE d.o_id=$o_id AND h.m_id=$m_id";
+ WHERE d.o_id=$o_id AND h.m_id=$m_id ";
 $rscartdetail = mysqli_query($conn, $querycartdetail);
 $rowdetail = mysqli_fetch_array($rscartdetail);
 // echo '<pre>';
@@ -79,9 +79,11 @@ $rsbank = mysqli_query($conn, $querybank);
                     echo "</tr>";
                     ?>
                 </table>
+                <table class="table table-bordered table-hover table-striped">
                 <h4>แสดงรายละเอียดธนาคารที่โอนเงิน</h4>
+               
                 <div class="col-sm-6">
-                    ธนาคารที่โอนเงิน : <?php echo $rowdetail['b_name']; ?>
+                    ธนาคารที่โอนเงิน : <?php echo $rowdetail['b_id']; ?>
                     เลขบัญชี : <?php echo $rowdetail['b_number']; ?> <br>
                     จำนวนเงินที่โอน : <?php echo number_format($rowdetail['o_slip_total'], 2); ?> บาท<br>
                     วัน/เดือน/ปี : <?php echo $rowdetail['o_slip_date']; ?> <br>
@@ -89,6 +91,8 @@ $rsbank = mysqli_query($conn, $querybank);
                     <br>
                     <img src="../imgslip/<?php echo $rowdetail['o_slip']; ?>" width="100%">
                 </div>
+                </table>
+
                 <div class="col-sm-6">
                     <?php if ($rowdetail['o_status'] == 3) { ?>
                         EMS : <?php echo $rowdetail['o_ems']; ?> <br>

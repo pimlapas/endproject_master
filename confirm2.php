@@ -28,6 +28,7 @@ include 'nav2.php';
             <form id="frmcart" name="frmcart" method="post" action="saveorder2.php">
                 <table class="table table-bordered table-hover table-striped">
                     <tr>
+                        <th width="10%" bgcolor="#EAEAEA">ชื่อร้าน</th>
                         <th width="5%" bgcolor="#EAEAEA">#</th>
                         <th width="10%" bgcolor="#EAEAEA">img</th>
                         <th width="55%" bgcolor="#EAEAEA">สินค้า</th>
@@ -41,11 +42,18 @@ include 'nav2.php';
 
                         foreach ($_SESSION['cart'] as $p_id => $qty) {
                             $sql = "SELECT * FROM tbl_prd WHERE p_id=$p_id";
+                            $sql2 = "SELECT * FROM tbl_member 
+                            INNER JOIN tbl_prd 
+                            ON  tbl_member.m_id = tbl_prd.ref_m_id
+                            WHERE p_id=$p_id";
                             $query = mysqli_query($conn, $sql);
+                            $query2 = mysqli_query($conn, $sql2);
                             $row = mysqli_fetch_array($query);
+                            $row2 = mysqli_fetch_array($query2);
                             $sum = $row['p_price'] * $qty; //เอาราคาสินค้า * จำนวนที่สั่งซื้อ
                             $total += $sum;
                             echo "<tr>";
+                            echo "<td>" . $row2["m_username"] . "</td>";
                             echo "<td>" . @$i += 1 . "</td>";
                             echo "<td>" . "<img src='databoad/pimg/" . $row['p_img'] . "' width='100'>" . "</td>";
                             echo "<td>" . $row["p_name"] . "</td>";
@@ -57,6 +65,7 @@ include 'nav2.php';
                             echo "</tr>";
                         } //close foreach
                         echo "<tr>";
+                        echo "<td  bgcolor='#CEE7FF'></td>";
                         echo "<td colspan='5' bgcolor='#CEE7FF' align='center'><b>ราคารวม</b></td>";
                         echo "<td align='right' bgcolor='#CEE7FF'>" . "<b>" . number_format($total, 2) . "</b>" . "</td>";
                         echo "</tr>";
@@ -90,6 +99,8 @@ include 'nav2.php';
                             <input type="text" class="form-control" id="inputCity" name="m_phone" value=" <?php echo $_SESSION['m_phone']; ?>">
                         </div>
                     </div>
+                 
+                    <input type="hidden" name="ors_id" value=" <?php echo $row['ref_m_id']; ?>">
                     <input type="hidden" name="m_id" value=" <?php echo $_SESSION['m_id']; ?>">
                     <input type="hidden" name="total" value=" <?php echo $total; ?>">
                     <button type="submit" class="btn btn-primary">สั่งซื้อสินค้า</button>

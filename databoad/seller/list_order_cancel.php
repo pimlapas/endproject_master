@@ -1,6 +1,6 @@
 <?php
 
-$queryorder = "SELECT * FROM order_head WHERE o_status = 4";
+$queryorder = "SELECT * FROM order_head WHERE o_status = '4' and $m_id = ors_id";
 $rsorder = mysqli_query($conn, $queryorder);
 
 ?>

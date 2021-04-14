@@ -13,6 +13,14 @@ extract($row);
 $sql2 = "UPDATE tbl_prd SET p_view=p_view+1 WHERE p_id=$p_id";
 $result2 = mysqli_query($conn, $sql2) or die("Error in query: $sql2 " . mysqli_error($conn));
 
+$sql3 = "SELECT m_username
+FROM tbl_member 
+INNER JOIN tbl_prd 
+ON  tbl_member.m_id = tbl_prd.ref_m_id
+WHERE p_id=$p_id";
+$result3 = mysqli_query($conn, $sql3) or die("Error in query: $sql3" . mysqli_error($conn));
+$row2 = mysqli_fetch_array($result3);
+
 ?>
 <div class="container">
     <div class="row">
@@ -32,6 +40,8 @@ $result2 = mysqli_query($conn, $sql2) or die("Error in query: $sql2 " . mysqli_e
                     ราคา <?php echo number_format($row['p_price'], 2); ?> บาท
                 </font>
             </h4>
+            <button>ลงประกาศขายโดย <?php echo $row2['m_username']; ?></button>
+
             <p>
                 <?php echo $row['p_detail']; ?>
                 <br>
@@ -39,6 +49,13 @@ $result2 = mysqli_query($conn, $sql2) or die("Error in query: $sql2 " . mysqli_e
                 <br>
                 จำนวนการเข้าชม <?php echo $row['p_view']; ?> ครั้ง
             </p>
+            
+            <?php if ($row['p_qty'] > 0) { ?>
+                <a href="cart2.php?p_id=<?php echo $row['p_id']; ?>&<?php echo $row['ref_m_id']; ?>&act=add " class="btn btn-primary">ซื้อสินค้า</a>
+            <?php } else {
+                echo '<button class="btn btn-danger" disabled>สินค้าหมด!!</button>';
+            } ?>
+
 
             <p>
             <h4> แสดงความคิดเห็นต่อสินค้า </h4>
