@@ -1,6 +1,8 @@
 <?php
 session_start();
- /* print_r($_SESSION); */ 
+ print_r($_SESSION);
+ 
+
 if ($_SESSION['m_name'] == '') {
     //echo 'คุณยังไม่ได้ login';
     //header("Location: databoad/login.php");
@@ -12,28 +14,36 @@ if ($_SESSION['m_name'] == '') {
 
 include 'conn.php';
 
-@$p_id = mysqli_real_escape_string($conn, $_GET['p_id']);
-@$act = mysqli_real_escape_string($conn, $_GET['act']);
-@$ref_m_id = mysqli_real_escape_string($conn, $_GET['ref_m_id']);
 
+
+$p_id = mysqli_real_escape_string($conn, $_GET['p_id']);
+$act = mysqli_real_escape_string($conn, $_GET['act']);
+
+/*  $sql1 = "SELECT * FROM tbl_prd WHERE p_id=$p_id";
+$query1 = mysqli_query($conn, $sql1);
+$row1 = mysqli_fetch_array($query1); 
+ */
 
 
 if ($act == 'add' && !empty($p_id) ) {
-    if (isset($_SESSION['cart'][$p_id]) == $p_id) {
+    if ($_SESSION['cart'] == null) {
         $_SESSION['cart'][$p_id]++;
-    } else if ($_SESSION['cart'] == null) {
+    } else if (isset($_SESSION['cart'][$p_id]) == $p_id) {
         $_SESSION['cart'][$p_id]++;
     } else {
         echo "<script type='text/javascript'>";
-        echo "alert('สั่งซื้อได้ครั้งละ 1 รายการเท่านั้น');";
+        echo "alert('สั่งซื้อได้ร้านเดียวเท่านั้นเท่านั้น');";
         echo "window.location = '#'; ";
         echo "</script>";
     }
 }
 
+
 if ($act == 'remove' && !empty($p_id))  //ยกเลิกการสั่งซื้อ
 {
     unset($_SESSION['cart'][$p_id]);
+    
+    
 }
 
 if ($act == 'update') {
@@ -46,6 +56,9 @@ if ($act == 'update') {
 if ($act == 'cancel')  //ยกเลิกการสั่งซื้อ
 {
     unset($_SESSION['cart']);
+    
+
+
 }
 
 include 'header.php';
@@ -73,9 +86,13 @@ include 'nav2.php';
                     </tr>
                     <?php
                     $total = 0;
+
+
                     if (!empty($_SESSION['cart'])) {
 
-                        foreach ($_SESSION['cart'] as $p_id => $qty) {
+
+                        foreach ($_SESSION['cart'] as $p_id => $qty) {                   
+
                             $sql = "SELECT * FROM tbl_prd WHERE p_id=$p_id";
                             $sql2 = "SELECT m_username FROM tbl_member 
                             INNER JOIN tbl_prd 
@@ -88,6 +105,7 @@ include 'nav2.php';
                             $sum = $row['p_price'] * $qty; //เอาราคาสินค้า * จำนวนที่สั่งซื้อ
                             $total += $sum;
                             $p_qty = $row['p_qty']; //จำนวนสินค้าในสต๊อก
+
 
                             echo "<tr>";
                             echo "<td>" . $row2["m_username"] . "</td>";

@@ -13,7 +13,6 @@ echo "<table id='example' class='display table table-bordered table-hover' cells
 echo "
 <thead>
 <tr align='center' class='danger'>
-<th width='5%'>รหัส</th>
 <th width='15%'>ธนาคาร</th>
 <th width='15%'>เลขบัญชี</th>
 <th width='15%'>ชื่อเจ้าของบัญชี</th>
@@ -24,7 +23,6 @@ echo "
 ";
 while ($row = mysqli_fetch_array($result)) {
   echo "<tr>";
-  echo "<td align='center'>" . $row["b_id"] . '.' . "</td> ";
   echo "<td>" . $row["b_name"] .  "</td> ";
   echo "<td>" . $row["b_number"] .  "</td> ";
   echo "<td>" . $row["b_owner"] .  "</td> ";

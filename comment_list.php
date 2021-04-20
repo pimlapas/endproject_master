@@ -1,6 +1,7 @@
 <?php
 $query = " SELECT * FROM tbl_comment 
 WHERE ref_p_id=$p_id 
+AND c_status=1
 ORDER BY c_date DESC" or die("Error:" . mysqli_error($conn));
 $result = mysqli_query($conn, $query);
 
@@ -16,6 +17,7 @@ echo "
 </tr>
 </thead>
 ";
+
 while ($row = mysqli_fetch_array($result)) {
     echo "<tr>";
     echo "<td align='center'>" . @$i += 1 . '.' . "</td> ";

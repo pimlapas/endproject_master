@@ -8,10 +8,10 @@
     <meta name="description" content="Colorlib Templates">
     <meta name="author" content="Colorlib">
     <meta name="keywords" content="Colorlib Templates">
+    <link href="../fontawesome/css/all.css" rel="stylesheet"> 
 
     <!-- Title Page-->
     <title>Register Shop2Hand</title>
-
     <!-- Icons font CSS-->
     <link href="form_register/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link href="form_register/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
@@ -26,6 +26,7 @@
 
     <!-- Main CSS-->
     <link href="form_register/css/main.css" rel="stylesheet" media="all">
+    
 </head>
 
 <body>
@@ -33,6 +34,9 @@
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
+                <div >
+                  <a href="../index.php" ><i class="fas fa-home"></i></a>
+                </div>
                     <h2 class="title"><center>สมัครสมาชิก</center></h2>
                     <form action="member_form_add_db.php" method="POST" class="form-horizontal" enctype="multipart/form-data">
 
@@ -131,6 +135,8 @@
 
                         <div class="p-t-15">
                             <button class="btn btn--radius-2 btn--blue" type="submit">สมัครสมาชิก</button>
+                            <span class="ml-auto"><a href="../login.php" class="forgot-pass">มีบัญชีอยู่แล้ว ?</a></span>
+                            
                         </div>
                     </form>
                 </div>

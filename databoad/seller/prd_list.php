@@ -16,7 +16,7 @@ echo "<table id='example' class='display table table-bordered table-hover' cells
 echo "
 <thead>
 <tr align='center' class='danger'>
-<th width='5%'>รหัส</th>
+<th width='5%'>รหัสสินค้า</th>
 <th width='15%'>รูปสินค้า</th>
 <th width='15%'>ประเภทสินค้า</th>
 <th width='15%'>ชื่อสินค้า</th>

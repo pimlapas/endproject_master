@@ -33,6 +33,7 @@ if (isset($_POST['m_username'])) {
         $_SESSION["m_address"] = $row["m_address"];
         $_SESSION["m_email"] = $row["m_email"];
         $_SESSION["m_phone"] = $row["m_phone"];
+        
 
 
         if ($_SESSION["m_level"] == "ADMIN") { //ถ้าเป็น admin ให้กระโดดไปหน้า admin page
