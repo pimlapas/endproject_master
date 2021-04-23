@@ -1,23 +1,20 @@
 <?php include('hder.php'); //css 
 //query cart detail
 $o_id = mysqli_real_escape_string($conn, $_GET['o_id']);
-$querycartdetail = "SELECT d.*,p.p_img, p.p_name, p.p_price, h.*, m.*, b.*
+$querycartdetail = "SELECT d.*,p.p_img, p.p_name, p.p_price, h.*
  FROM order_detail as d
  INNER JOIN order_head as h ON d.o_id = h.o_id
- INNER JOIN tbl_bank as b ON h.ors_id = b.s_id /* ระบุธนาคารตามไอดีบัญชีของผู้ขาย */
- INNER JOIN tbl_member as m ON h.ors_id = m.m_id
  INNER JOIN tbl_prd as p ON d.p_id = p.p_id
- WHERE d.o_id=$o_id AND h.m_id=$m_id ";
-
-
-
+ WHERE d.o_id=$o_id AND h.m_id=$m_id";
 $rscartdetail = mysqli_query($conn, $querycartdetail);
 $rowdetail = mysqli_fetch_array($rscartdetail);
 // echo '<pre>';
 // print_r($rowdetail);
 // echo '</pre>';
-/* $querybank = "SELECT * FROM tbl_bank ";
-$rsbank = mysqli_query($conn, $querybank); */
+$querybank = "SELECT * FROM tbl_bank as b
+ INNER JOIN order_head as h ON b.s_id = h.ors_id
+WHERE h.o_id=$o_id ";
+$rsbank = mysqli_query($conn, $querybank);
 
 ?>
 
@@ -33,7 +30,9 @@ $rsbank = mysqli_query($conn, $querybank); */
             <div class="col-md-10">
                 <h3 align="center"> แจ้งชำระเงิน </h3>
                 <h4>
+
                     OrderID : <?php echo $rowdetail['o_id']; ?> <br>
+                    จากร้านค้า : <?php echo "<td>" . $row['m_username']; ?> <br>
                     ส่งไปที่ : <?php echo $rowdetail['o_name']; ?> <br>
                     <?php echo $rowdetail['o_addr']; ?> <br>
                     เบอร์โทร : <?php echo $rowdetail['o_phone']; ?> <br>
@@ -56,7 +55,7 @@ $rsbank = mysqli_query($conn, $querybank); */
                 </h4>
                 <table class="table table-bordered table-hover table-striped">
                     <tr>
-                        <th width="5%" bgcolor="#EAEAEA">ชื่อร้าน</th>
+                        
                         <th width="5%" bgcolor="#EAEAEA">#</th>
                         <th width="10%" bgcolor="#EAEAEA">img</th>
                         <th width="55%" bgcolor="#EAEAEA">สินค้า</th>
@@ -69,7 +68,6 @@ $rsbank = mysqli_query($conn, $querybank); */
                     foreach ($rscartdetail as $row) {
                         $total += $row["d_subtotal"]; //ราคารวมทั้งออเดอร์
                         echo "<tr>";
-                        echo "<td>" . $row['m_username'];
                         echo "<td>" . @$i += 1 . "</td>";
                         echo "<td>" . "<img src='../pimg/" . $row['p_img'] . "' width='100'>" . "</td>";
                         echo "<td>" . $row["p_name"] . "</td>";
@@ -81,17 +79,13 @@ $rsbank = mysqli_query($conn, $querybank); */
                     } //close foreach
                     echo "<tr>";
                     echo "<td colspan='5' bgcolor='#CEE7FF' align='center'><b>ราคารวม</b></td>";
-                    echo "<td  bgcolor='#CEE7FF'>";
                     echo "<td align='right' bgcolor='#CEE7FF'>" . "<b>" . number_format($total, 2) . "</b>" . "</td>";
                     echo "</tr>";
                     ?>
                 </table>
                 <h4>เลือกธนาคารที่ชำระเงิน/โอนเงิน</h4>
                 <form action="payment_db.php" method="post" class="form-horizontal" enctype="multipart/form-data">
-                
-                    <?php 
-                
-                    echo '
+                    <?php echo '
                 <table class="table table-bordered table-hover table-striped">
                     <tr>
                         <th width="10%" bgcolor="#EAEAEA">เลือกธนาคาร</th>
@@ -99,20 +93,17 @@ $rsbank = mysqli_query($conn, $querybank); */
                         <th width="30%" bgcolor="#EAEAEA">เลขบัญชี</th>
                         <th width="40%" align="center" bgcolor="#EAEAEA">ชื่อเจ้าของบัญชี</th>
                     </tr> ';
-                   
-                        $b_id = $row["b_id"];
+                    foreach ($rsbank as $rsb) {
+                        $b_id = $rsb["b_id"];
                         echo '<tr>';
                         echo "<td>" . "<input type='radio' name='b_id' required value='$b_id'>" . "</td>";
-                        echo "<td>" . $row["b_name"] . "</td>";
-                        echo "<td>" . $row["b_number"] . "</td>";
-                        echo "<td>" . $row["b_owner"] . "</td>";
+                        echo "<td>" . $rsb["b_name"] . "</td>";
+                        echo "<td>" . $rsb["b_number"] . "</td>";
+                        echo "<td>" . $rsb["b_owner"] . "</td>";
                         echo '</tr>';
-                    
-                    echo '</table>';
-                
-                
+                    }
+                    echo '</table>'
                     ?>
-
                     <div class="form-group">
                         <div class="col-md-4">
                             วันที่ชำระเงิน <br>

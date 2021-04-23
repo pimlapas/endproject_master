@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+    <link href="fontawesome/css/all.css" rel="stylesheet">
 
     <link rel="stylesheet" href="form_login/fonts/icomoon/style.css">
 
@@ -31,24 +32,28 @@
                 <div class="row align-items-center justify-content-center">
                     <div class="col-md-6">
                         <div class="form-block">
-                            <div class="text-center mb-5">
-                            <i class="fas fa-home"></i>
+                        <a href="index.php"><i class="fas fa-home"></i></a>
 
-                                <h3>  <strong>หน้าเข้าสู่ระบบ</strong></h3>
+                            <div class="text-center mb-5">
+
+                                <h3> <strong>เข้าสู่ระบบ</strong></h3>
                                 <!-- <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p> -->
                             </div>
+
                             <form action="chklogin.php" method="post">
+
                                 <div class="form-group first">
                                     <label for="username">ชื่อผู้ใช้งาน</label>
                                     <input type="text" class="form-control" placeholder="ชื่อผู้ใช้งาน" name="m_username" id="username">
                                 </div>
                                 <div class="form-group last mb-3">
-                                    <label for="password">รหัสผ่าน</label>
+                                    <label for="password">รหัสผ่าน </label>
                                     <input type="password" class="form-control" placeholder="รหัสผ่านของคุณ" name="m_password" id="password">
                                 </div>
 
                                 <div class="d-sm-flex mb-5 align-items-center">
-                                    <span class="ml-auto"><a href="databoad/register.php" class="forgot-pass">ยังไม่มีบัญชี ?</a></span>
+
+                                    <span class="ml-auto"> <a href="databoad/forgetpassword.php" class="forgot-pass">ลืมรหัสผ่าน</a></span>
                                 </div>
 
                                 <input type="submit" value="เข้าสู่ระบบ" class="btn btn-block btn-info">
@@ -62,7 +67,7 @@
 
 
     </div>
-    
+
     <script src="form_login/js/jquery-3.3.1.min.js"></script>
     <script src="form_login/js/popper.min.js"></script>
     <script src="form_login/js/bootstrap.min.js"></script>

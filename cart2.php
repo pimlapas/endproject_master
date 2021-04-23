@@ -2,7 +2,9 @@
 session_start();
  print_r($_SESSION);
  
-
+ /* unset($_SESSION['ref_m_id']);
+ unset($_SESSION['cart']);
+ */
 if ($_SESSION['m_name'] == '') {
     //echo 'คุณยังไม่ได้ login';
     //header("Location: databoad/login.php");
@@ -19,29 +21,53 @@ include 'conn.php';
 $p_id = mysqli_real_escape_string($conn, $_GET['p_id']);
 $act = mysqli_real_escape_string($conn, $_GET['act']);
 
-/*  $sql1 = "SELECT * FROM tbl_prd WHERE p_id=$p_id";
-$query1 = mysqli_query($conn, $sql1);
-$row1 = mysqli_fetch_array($query1); 
- */
 
 
-if ($act == 'add' && !empty($p_id) ) {
-    if ($_SESSION['cart'] == null) {
+
+if ($act == 'add' && !empty($p_id) ) 
+{
+    $sql1 = "SELECT * FROM tbl_prd WHERE p_id = '$p_id' ";
+    $rs1 = mysqli_query($conn,$sql1);
+    $row1 = mysqli_fetch_array($rs1);
+
+    if ($_SESSION['cart'][$p_id] == null) 
+    {
+        if($_SESSION['ref_m_id'] == null)
+        {
+            $_SESSION['ref_m_id'] = $row1['ref_m_id'];
+        }
+        else
+        {
+            if($_SESSION['ref_m_id'] != $row1['ref_m_id'])
+            {
+                echo "<script type='text/javascript'>";
+                echo "alert('สั่งซื้อได้ร้านเดียวเท่านั้นเท่านั้น');";
+                echo "window.location = 'cart2.php'; ";
+                echo "</script>";
+                exit();
+            }
+        }
         $_SESSION['cart'][$p_id]++;
-    } else if (isset($_SESSION['cart'][$p_id]) == $p_id) {
+    } 
+    else if (isset($_SESSION['cart'][$p_id]) == $p_id) 
+    {
         $_SESSION['cart'][$p_id]++;
-    } else {
-        echo "<script type='text/javascript'>";
-        echo "alert('สั่งซื้อได้ร้านเดียวเท่านั้นเท่านั้น');";
-        echo "window.location = '#'; ";
-        echo "</script>";
-    }
+    } 
+
 }
+
+
+
 
 
 if ($act == 'remove' && !empty($p_id))  //ยกเลิกการสั่งซื้อ
 {
+
     unset($_SESSION['cart'][$p_id]);
+    if($_SESSION['cart'][$p_id] == null){
+        unset($_SESSION['ref_m_id']);
+
+    }
     
     
 }
@@ -56,7 +82,7 @@ if ($act == 'update') {
 if ($act == 'cancel')  //ยกเลิกการสั่งซื้อ
 {
     unset($_SESSION['cart']);
-    
+    unset($_SESSION['ref_m_id']);
 
 
 }

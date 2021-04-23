@@ -61,14 +61,26 @@
                             </div>
                         </div>
 
+                        <form method="post" action="checkpassword.php">
                         <div class="input-group">
                             <div class="col-4">
                                 <div class="input-group">
                                     <label class="label">รหัสผ่าน</label>
-                                    <input class="input--style-4" type="password" name="m_password" required>
+                                    <input class="input--style-4" type="password" name="password" required>
                                 </div>
                             </div>
                         </div>
+                        <div class="input-group">
+                            <div class="col-4">
+                                <div class="input-group">
+                                    <label class="label">ยืนยันรหัสผ่าน</label>
+                                    <input class="input--style-4" type="password" name="confirmpassword" required>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="submit" value="check password" />
+
+                        </form>
 
                        
 
@@ -134,8 +146,8 @@
                         </div>
 
                         <div class="p-t-15">
+                        
                             <button class="btn btn--radius-2 btn--blue" type="submit">สมัครสมาชิก</button>
-                            <span class="ml-auto"><a href="../login.php" class="forgot-pass">มีบัญชีอยู่แล้ว ?</a></span>
                             
                         </div>
                     </form>

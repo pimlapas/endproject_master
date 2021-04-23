@@ -9,5 +9,12 @@
 
 	<a href="comment.php" class="list-group-item">ความคิดเห็น</a>
 
+	<a href="manage.php?act=edit" class="list-group-item">
+		แก้ไขโปรไฟล์
+	</a>
+	<a href="manage.php?act=pwd" class="list-group-item">
+		แก้ไขรหัสผ่าน
+	</a>
+
 	<a href="../logout.php" onclick="return confirm('Confirm?');" class="list-group-item list-group-item-danger">ออกจากระบบ</a>
 </div>

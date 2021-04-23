@@ -26,10 +26,16 @@ extract($row);
         <?php 
         $ml =  $row['m_level'];
         if($ml=='ADMIN'){
-          echo '<option value="MEMBER">สมาชิก</option>';
+          echo '<option value="MEMBER">MEMBER</option>';
+          echo '<option value="SELLER">SELLER</option>';
+        }elseif ($ml=='SELLER'){
+          echo '<option value="ADMIN">ADMIN</option>';
+          echo '<option value="MEMBER">MEMBER</option>';
         }else{
-          echo '<option value="ADMIN">แอดมิน</option>';
+          echo '<option value="ADMIN">ADMIN</option>';
+          echo '<option value="SELLER">SELLER</option>';
         }
+
         ?>
       </select>
     </div>
@@ -50,9 +56,9 @@ extract($row);
       <select name="m_fname" class="form-control" required>
          <option value="<?php echo $row['m_fname'];?>">-<?php echo $row['m_fname'];?>-</option>
         <option value="">-เลือกข้อมูล-</option>
-        <option value="นาย">-นาย-</option>
-        <option value="นาง">-นาง-</option>
-        <option value="นางสาว">-นางสาว-</option> 
+        <option value="นาย">นาย</option>
+        <option value="นาง">นาง</option>
+        <option value="นางสาว">นางสาว</option> 
       </select>
     </div>
   </div>

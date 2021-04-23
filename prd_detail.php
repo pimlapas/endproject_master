@@ -54,12 +54,11 @@ $row3 = mysqli_fetch_array($result3);
                 จำนวนการเข้าชม <?php echo $row['p_view']; ?> ครั้ง
             </p>
             
-            <?php if ($row['p_qty'] > 0) { ?>
-                <a href="cart2.php?p_id=<?php echo $row['p_id']; ?> ?>&act=add" class="btn btn-primary">ซื้อสินค้า</a>
-
-            <?php } else {
-                echo '<button class="btn btn-danger" disabled>สินค้าหมด!!</button>';
-            } ?>
+                            <?php if ($row['p_qty'] > 0) { ?>
+                                <a href="cart2.php?p_id=<?php echo $row['p_id']; ?>&act=add" class="btn btn-primary">ซื้อสินค้า</a>
+                            <?php } else {
+                                echo '<button class="btn btn-danger" disabled>สินค้าหมด!!</button>';
+                            } ?>
 
 
             <p>

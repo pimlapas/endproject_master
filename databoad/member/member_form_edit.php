@@ -9,15 +9,6 @@
                 <option value="<?php echo $row['m_level']; ?>">
                     <?php echo $row['m_level']; ?>
                 </option>
-                <option value="">เลือกข้อมูล</option>
-                <?php
-                $ml = $row['m_level'];
-                if ($ml == 'ADMIN') {
-                    echo '<option value="STAFF">สมาชิก</option>';
-                } else {
-                    echo '<option value="ADMIN">แอดมิน</option>';
-                }
-                ?>
             </select>
         </div>
     </div>

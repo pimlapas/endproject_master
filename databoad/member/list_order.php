@@ -8,7 +8,7 @@ $rsorder = mysqli_query($conn, $queryorder);
 <table id="example" class="display table table-bordered table-hover table-striped">
     <thead class="thead-light">
         <tr class="danger">
-            <th width="5%">#</th>
+            <th width="5%">รหัส</th>
             <th width="10%">สถานะ</th>
             <th width="10%">วันเดือนปี</th>
             <th width="10%">

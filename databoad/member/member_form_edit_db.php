@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <?php
 //conn
-include('../conn.php'); 
+include('../../conn.php'); 
 
 // echo '<pre>';
 // print_r($_POST);

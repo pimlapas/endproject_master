@@ -53,7 +53,7 @@ echo $sql1;
 //exit;
 
 $sql2 = "SELECT MAX(o_id) AS o_id FROM order_head WHERE m_id='$m_id' AND o_dttm='$dttm' ";
-$query2    = mysqli_query($conn, $sql2) or die("Error in query; $sql2" . mysqli_error($sql2));
+$query2 = mysqli_query($conn, $sql2) or die("Error in query; $sql2" . mysqli_error($sql2));
 $row = mysqli_fetch_array($query2);
 $o_id = $row["o_id"]; //ออเดอ id ล่าสุดที่อยู่ในตาราง order_head
 
@@ -99,6 +99,7 @@ if ($query1 && $query4) {
     foreach ($_SESSION['cart'] as $p_id) {
         //unset($_SESSION['cart'][$p_id]);
         unset($_SESSION['cart']);
+        unset($_SESSION['ref_m_id']);
     }
 } else {
     mysqli_query($conn, "ROLLBACK");
