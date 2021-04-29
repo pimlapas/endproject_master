@@ -1,13 +1,17 @@
 
+
 <h4> Form แก้ไขสมาชิก </h4>
-<form action="member_form_edit_db.php" method="post" class="form-horizontal" enctype="multipart/form-data">
+
+<form action="member_form_edit_db.php" method="POST" class="form-horizontal" enctype="multipart/form-data">
     <div class="form-group">
         <div class="col-sm-2 control-label">
             สถานะ :
         </div>
         <div class="col-sm-2">
             <select name="m_level" class="form-control" disabled>
-                <option value="<?php echo $row['m_level']; ?>"> </option>
+                <option value="<?php echo $row['m_level']; ?>">
+                    <?php echo $row['m_level']; ?>
+                </option>
             </select>
         </div>
     </div>
@@ -96,4 +100,4 @@
             <button type="submit" class="btn btn-primary">บันทึกข้อมูล</button>
         </div>
     </div>
-</form> 
+</form>

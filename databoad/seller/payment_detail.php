@@ -16,6 +16,7 @@ $querybank = "SELECT * FROM tbl_bank";
 $rsbank = mysqli_query($conn, $querybank);
 
 ?>
+<link href="../../fontawesome/css/all.css" rel="stylesheet">
 
 <body>
     <?php include('nav.php'); //menu
@@ -28,32 +29,60 @@ $rsbank = mysqli_query($conn, $querybank);
             </div>
             <div class="col-md-10">
                 <h3 align="center"> รายละเอียดการแจ้งชำระเงิน </h3>
+                <h5 align="center">--------------------------------------------------------------------------------------</h5>
                 <h4>
-                    OrderID : <?php echo $rowdetail['o_id']; ?> <br>
-                    ส่งไปที่ : <?php echo $rowdetail['o_name']; ?> <br>
-                    <?php echo $rowdetail['o_addr']; ?> <br>
-                    เบอร์โทร : <?php echo $rowdetail['o_phone']; ?> <br>
-                    อีเมล : <?php echo $rowdetail['o_email']; ?> <br>
-                    วันที่สั่งซื้อ : <?php echo $rowdetail['o_dttm']; ?> <br>
-                    สถานะ : <?php
-                            $st = $rowdetail['o_status'];
-                            echo '<font color="blue">';
-                            if ($st == 1) {
-                                echo 'รอการชำระเงิน';
-                            } elseif ($st == 2) {
-                                echo 'ชำระเงินแล้ว';
-                            } elseif ($st == 3) {
-                                echo 'ตรวจสอบเลข EMS';
-                            } else {
-                                echo 'ยกเลิก';
-                            }
-                            echo '</font>';
-                            ?>
-                </h4>
+               
+               <i class="fas fa-user-tie"></i>
+               <b>ชื่อผู้รับ : </b><?php echo $rowdetail['o_name']; ?> <br><br>
+               <i class="fas fa-map-marker-alt"></i>
+               <b>ที่อยู่จัดส่ง :</b><?php echo $rowdetail['o_addr']; ?> <br><br>
+               <i class="fas fa-phone-square-alt"></i>
+               <b>เบอร์โทร : </b><?php echo $rowdetail['o_phone']; ?> <br><br>
+               <i class="fas fa-envelope"></i>
+               <b>อีเมล :  </b><?php echo $rowdetail['o_email']; ?> <br><br>
+               <i class="fas fa-clock"></i>
+               <b>วันที่สั่งซื้อ : </b><?php echo $rowdetail['o_dttm']; ?> <br><br>
+               <i class="fas fa-star-half-alt"></i>
+               <b>สถานะ :  </b><?php
+                       $st = $rowdetail['o_status'];
+                       echo '<font color="blue">';
+                       if ($st == 1) {
+                           echo 'รอการชำระเงิน';
+                       } elseif ($st == 2) {
+                           echo 'ชำระเงินแล้ว';
+                       } elseif ($st == 3) {
+                           echo 'ตรวจสอบเลข EMS';
+                       } else {
+                           echo 'ยกเลิก';
+                       }
+                       echo '</font>';
+                       ?>
+                       <br>
+          <br>
+           </h4>
+           
+           <div class="col-sm-6">
+           
+                    <h4><i class="fas fa-shipping-fast"></i> แจ้งเลข EMS พัสดุ </h4>
+                    <form action="ems_db.php" method="post" class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <input type="text" name="o_ems" class="form-control" required minlength="4" placeholder="กรอกขั้นต่ำ 4 ตัว">
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="hidden" name="o_id" value="<?php echo $o_id; ?>">
+                                <button type="submit" class="btn btn-success"> บันทึก </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            
+           <br><br>
+           
                 <table class="table table-bordered table-hover table-striped">
                     <tr>
-                        <th width="5%" bgcolor="#EAEAEA">#</th>
-                        <th width="10%" bgcolor="#EAEAEA">img</th>
+                        <th width="5%" bgcolor="#EAEAEA">ลำดับ</th>
+                        <th width="10%" bgcolor="#EAEAEA">รูป</th>
                         <th width="55%" bgcolor="#EAEAEA">สินค้า</th>
                         <th width="10%" align="center" bgcolor="#EAEAEA">ราคา</th>
                         <th width="10%" align="center" bgcolor="#EAEAEA">จำนวน</th>
@@ -79,33 +108,17 @@ $rsbank = mysqli_query($conn, $querybank);
                     echo "</tr>";
                     ?>
                 </table>
-                <h4>แสดงรายละเอียดธนาคารที่โอนเงิน</h4>
+                <h4><b><i class="fas fa-info-circle"></i> แสดงรายละเอียดธนาคารที่โอนเงิน</b></h4>
                 <div class="col-sm-6">
                     ธนาคารที่โอนเงิน : <?php echo $rowdetail['b_name']; ?>
                     เลขบัญชี : <?php echo $rowdetail['b_number']; ?> <br>
                     จำนวนเงินที่โอน : <?php echo $rowdetail['o_slip_total']; ?> <br>
                     วัน/เดือน/ปี : <?php echo $rowdetail['o_slip_date']; ?> <br>
-                    slip
+                    
                     <br>
                     <img src="../imgslip/<?php echo $rowdetail['o_slip']; ?>" width="100%">
                 </div>
-                <div class="col-sm-6">
-                    <h3> แจ้งเลข EMS พัสดุ </h3>
-                    <form action="ems_db.php" method="post" class="form-horizontal">
-                        <div class="form-group">
-                            <div class="col-sm-2 control-label">
-                                EMS
-                            </div>
-                            <div class="col-sm-6">
-                                <input type="text" name="o_ems" class="form-control" required minlength="4" placeholder="กรอกขั้นต่ำ 4 ตัว">
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="hidden" name="o_id" value="<?php echo $o_id; ?>">
-                                <button type="submit" class="btn btn-success"> บันทึก </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                
             </div>
         </div>
     </div>

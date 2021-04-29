@@ -10,7 +10,7 @@ $rsorder = mysqli_query($conn, $queryorder);
 <table id="example" class="display table table-bordered table-hover table-striped">
     <thead class="thead-light">
         <tr class="danger">
-            <th width="5%">#</th>
+            <th width="5%">ID</th>
             <th width="40%">ชื่อลูกค้า</th>
             <th width="15%">
                 <center>ปี/เดือน/วัน</center>
@@ -48,11 +48,9 @@ $rsorder = mysqli_query($conn, $queryorder);
                     $caldate = round(abs(strtotime("$o_dttm") - strtotime("$datenow")) / 60 / 60 / 24); 
                     echo $caldate;
                     echo '<br>';
-                    if($caldate > 3){
+                   
                         echo "<a href='order_detail.php?o_id=$o_id&do=order_cancel' class='btn btn-danger btn-xs'> ยกเลิก </a>";
-                    } else{
-                        echo '-';
-                    }
+                    
                     ?>
                 </td>
                 <td> <?php 

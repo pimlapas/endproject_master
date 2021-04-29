@@ -1,4 +1,7 @@
 <meta charset="utf-8">
+
+	
+
 <?php
 //condb
 include('condb.php'); 
@@ -51,17 +54,22 @@ include('condb.php');
     $num=mysqli_num_rows($result1);
 
     //echo $num;
-
+	$m_password1  = md5($_POST["m_password1"]);
+	$m_password2  = md5($_POST["m_password2"]);
+	
     //exit;
-    if($num > 0)
-    {
+    if($num > 0){
 	    echo "<script>";
 	    echo "alert(' ข้อมูลซ้ำ กรุณาเพิ่มใหม่อีกครั้ง !');";
 	    echo "window.history.back();";
 	    echo "</script>";
-    }else{
-
-	
+    }elseif($m_password1 != $m_password2){
+	//check password 
+		echo "<script type='text/javascript'>";
+		echo "alert('password ไม่ตรงกัน กรุณาใส่ใหม่อีกครั้ง ');";
+		echo "window.location = 'register.php'; ";
+		echo "</script>";
+	}else{
 	//เพิ่มเข้าไปในฐานข้อมูล
 	$sql = "INSERT INTO tbl_member
 	(
@@ -79,7 +87,7 @@ include('condb.php');
 	VALUES
 	(
 	'$m_username',
-	'$m_password',
+	'$m_password1',
 	'$m_fname',
 	'$m_name',
 	'$m_lname',

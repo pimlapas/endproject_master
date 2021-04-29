@@ -8,7 +8,7 @@ include('../../conn.php');
 // echo '</pre>';
 
 // exit();
-	$m_usename = mysqli_real_escape_string($conn,$_POST["m_usename"]);
+
 	$m_fname = mysqli_real_escape_string($conn,$_POST["m_fname"]);
 	$m_name = mysqli_real_escape_string($conn,$_POST["m_name"]);
 	$m_lname = mysqli_real_escape_string($conn,$_POST["m_lname"]);
@@ -39,7 +39,6 @@ include('../../conn.php');
 
 	//update data 
 	$sql = "UPDATE tbl_member SET 
-	m_username = '$m_username',
 	m_fname='$m_fname',
 	m_name='$m_name',
 	m_lname='$m_lname',

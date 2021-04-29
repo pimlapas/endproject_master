@@ -4,11 +4,13 @@ $queryorder = "SELECT * FROM order_head WHERE o_status = '3' and $m_id = ors_id"
 $rsorder = mysqli_query($conn, $queryorder);
 
 ?>
+<link href="../../fontawesome/css/all.css" rel="stylesheet">
+
 <h3>รายการแจ้ง EMS แล้ว</h3>
 <table id="example" class="display table table-bordered table-hover table-striped">
     <thead class="thead-light">
         <tr class="danger">
-            <th width="5%">#</th>
+            <th width="5%">ID</th>
             <th width="40%">ชื่อลูกค้า</th>
             <th width="15%">
                 <center>ปี/เดือน/วัน</center>

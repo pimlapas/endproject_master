@@ -21,7 +21,7 @@ if ($m_level != 'SELLER') {
 }
 
 //query member login 
-$sql = "SELECT m_name, m_img FROM tbl_member WHERE m_id=$m_id";
+$sql = "SELECT * FROM tbl_member WHERE m_id=$m_id";
 $result = mysqli_query($conn, $sql) or die("Error in query: $sql " . mysqli_error($conn));
 $row = mysqli_fetch_array($result);
 extract($row);

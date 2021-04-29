@@ -13,9 +13,9 @@ echo "<table id='example' class='display table table-bordered table-hover' cells
 echo "
 <thead>
 <tr align='center' class='danger'>
-<th width='15%'>ธนาคาร</th>
-<th width='15%'>เลขบัญชี</th>
-<th width='15%'>ชื่อเจ้าของบัญชี</th>
+<th width='15%'>ธนาคาร </th>
+<th width='15%'>เลขบัญชี </th>
+<th width='15%'>ชื่อเจ้าของบัญชี </th>
 <th width='15%'></th>
 
 </tr>

@@ -11,12 +11,17 @@ $rowdetail = mysqli_fetch_array($rscartdetail);
 // echo '<pre>';
 // print_r($rowdetail);
 // echo '</pre>';
-$querybank = "SELECT * FROM tbl_bank as b
- INNER JOIN order_head as h ON b.s_id = h.ors_id
+$querybank = "SELECT b.* FROM tbl_bank as b
+INNER JOIN order_head as h ON b.s_id = h.ors_id 
 WHERE h.o_id=$o_id ";
 $rsbank = mysqli_query($conn, $querybank);
 
+
+
+
 ?>
+<link href="../../fontawesome/css/all.css" rel="stylesheet">
+
 
 <body>
     <?php include('nav.php'); //menu
@@ -29,35 +34,41 @@ $rsbank = mysqli_query($conn, $querybank);
             </div>
             <div class="col-md-10">
                 <h3 align="center"> แจ้งชำระเงิน </h3>
+                <h4 align="center"><i class="fas fa-neuter"></i> <b>OrderID : <?php echo $rowdetail['o_id']; ?> </b></h4>
                 <h4>
-
-                    OrderID : <?php echo $rowdetail['o_id']; ?> <br>
-                    จากร้านค้า : <?php echo "<td>" . $row['m_username']; ?> <br>
-                    ส่งไปที่ : <?php echo $rowdetail['o_name']; ?> <br>
-                    <?php echo $rowdetail['o_addr']; ?> <br>
-                    เบอร์โทร : <?php echo $rowdetail['o_phone']; ?> <br>
-                    อีเมล : <?php echo $rowdetail['o_email']; ?> <br>
-                    วันที่สั่งซื้อ : <?php echo $rowdetail['o_dttm']; ?> <br>
-                    สถานะ : <?php
-                            $st = $rowdetail['o_status'];
-                            echo '<font color="blue">';
-                            if ($st == 1) {
-                                echo 'รอการชำระเงิน';
-                            } elseif ($st == 2) {
-                                echo 'ชำระเงินแล้ว';
-                            } elseif ($st == 3) {
-                                echo 'ตรวจสอบเลข EMS';
-                            } else {
-                                echo 'ยกเลิก';
-                            }
-                            echo '</font>';
-                            ?>
-                </h4>
+               
+               <i class="fas fa-user-tie"></i>
+               <b>ชื่อผู้รับ : </b><?php echo $rowdetail['o_name']; ?> <br><br>
+               <i class="fas fa-map-marker-alt"></i>
+               <b>ที่อยู่จัดส่ง :</b><?php echo $rowdetail['o_addr']; ?> <br><br>
+               <i class="fas fa-phone-square-alt"></i>
+               <b>เบอร์โทร : </b><?php echo $rowdetail['o_phone']; ?> <br><br>
+               <i class="fas fa-envelope"></i>
+               <b>อีเมล :  </b><?php echo $rowdetail['o_email']; ?> <br><br>
+               <i class="fas fa-clock"></i>
+               <b>วันที่สั่งซื้อ : </b><?php echo $rowdetail['o_dttm']; ?> <br><br>
+               <i class="fas fa-star-half-alt"></i>
+               <b>สถานะ :  </b><?php
+                       $st = $rowdetail['o_status'];
+                       echo '<font color="blue">';
+                       if ($st == 1) {
+                           echo 'รอการชำระเงิน';
+                       } elseif ($st == 2) {
+                           echo 'ชำระเงินแล้ว';
+                       } elseif ($st == 3) {
+                           echo 'ตรวจสอบเลข EMS';
+                       } else {
+                           echo 'ยกเลิก';
+                       }
+                       echo '</font>';
+                       ?>
+          
+           </h4>
+           <br><br>
                 <table class="table table-bordered table-hover table-striped">
                     <tr>
-                        
-                        <th width="5%" bgcolor="#EAEAEA">#</th>
-                        <th width="10%" bgcolor="#EAEAEA">img</th>
+                        <th width="5%" bgcolor="#EAEAEA">ลำดับ</th>
+                        <th width="10%" bgcolor="#EAEAEA">รูป</th>
                         <th width="55%" bgcolor="#EAEAEA">สินค้า</th>
                         <th width="10%" align="center" bgcolor="#EAEAEA">ราคา</th>
                         <th width="10%" align="center" bgcolor="#EAEAEA">จำนวน</th>
@@ -93,7 +104,7 @@ $rsbank = mysqli_query($conn, $querybank);
                         <th width="30%" bgcolor="#EAEAEA">เลขบัญชี</th>
                         <th width="40%" align="center" bgcolor="#EAEAEA">ชื่อเจ้าของบัญชี</th>
                     </tr> ';
-                    foreach ($rsbank as $rsb) {
+                    foreach ($rsbank as $rsb ) {
                         $b_id = $rsb["b_id"];
                         echo '<tr>';
                         echo "<td>" . "<input type='radio' name='b_id' required value='$b_id'>" . "</td>";

@@ -1,6 +1,6 @@
+
 <?php include('hder.php'); //css 
 ?>
-
 
 <body>
   <?php include('nav.php'); //menu

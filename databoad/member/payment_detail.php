@@ -1,68 +1,135 @@
-<meta charset="utf-8">
-<?php
-//condb
-include('../condb.php'); 
-
+<?php include('hder.php'); //css 
+//query cart detail
+$o_id = mysqli_real_escape_string($conn, $_GET['o_id']);
+$querycartdetail = "SELECT d.*,p.p_img, p.p_name, p.p_price, h.*, b.b_name, b.b_number
+ FROM order_detail as d
+ INNER JOIN order_head as h ON d.o_id = h.o_id
+ INNER JOIN tbl_prd as p ON d.p_id = p.p_id
+ INNER JOIN tbl_bank as b ON h.b_id = b.b_id
+ WHERE d.o_id=$o_id AND h.m_id=$m_id";
+$rscartdetail = mysqli_query($conn, $querycartdetail);
+$rowdetail = mysqli_fetch_array($rscartdetail);
 // echo '<pre>';
-// print_r($_POST);
+// print_r($rowdetail);
 // echo '</pre>';
+$querybank = "SELECT * FROM tbl_bank as b
+ INNER JOIN order_head as h ON b.s_id = h.ors_id
+WHERE h.o_id=$o_id ";
+$rsbank = mysqli_query($conn, $querybank);
 
-// exit();
+?>
+<link href="../../fontawesome/css/all.css" rel="stylesheet">
 
-	$b_id = mysqli_real_escape_string($conn,$_POST["b_id"]);
-	$o_slip_date = mysqli_real_escape_string($conn,$_POST["o_slip_date"]);
-	$o_slip_total = mysqli_real_escape_string($conn,$_POST["o_slip_total"]);
-	$o_id = mysqli_real_escape_string($conn,$_POST["o_id"]);
+<body>
+    <?php include('nav.php'); //menu
+    ?>
+    <!-- content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <?php include('menu_l.php'); ?>
+            </div>
+            <div class="col-md-10">
+                <h3 align="center"> รายละเอียดการแจ้งชำระเงิน </h3>
+                <h4>
+                <?php if ($rowdetail['o_status'] == 3) { ?>
+                    <h4>
+               
+               <i class="fas fa-user-tie"></i>
+               <b>ชื่อผู้รับ : </b><?php echo $rowdetail['o_name']; ?> <br><br>
+               <i class="fas fa-map-marker-alt"></i>
+               <b>ที่อยู่จัดส่ง :</b><?php echo $rowdetail['o_addr']; ?> <br><br>
+               <i class="fas fa-phone-square-alt"></i>
+               <b>เบอร์โทร : </b><?php echo $rowdetail['o_phone']; ?> <br><br>
+               <i class="fas fa-envelope"></i>
+               <b>อีเมล :  </b><?php echo $rowdetail['o_email']; ?> <br><br>
+               <i class="fas fa-clock"></i>
+               <b>วันที่สั่งซื้อ : </b><?php echo $rowdetail['o_dttm']; ?> <br><br>
+               -------------------------------------------------------------<br><br>
 
-	$date1 = date("Ymd_His"); //วันเดือนปีเวลา
-	$numrand = (mt_rand()); //เลขสุ่ม
-	$o_slip = (isset($_POST['o_slip']) ? $_POST['o_slip'] : '');
-	$upload=$_FILES['o_slip']['name'];
-	if($upload !='') { 
-		//โฟลเดอร์ที่เก็บไฟล์
-		$path="../imgslip/";
-		//ตัวขื่อกับนามสกุลภาพออกจากกัน
-		$type = strrchr($_FILES['o_slip']['name'],".");
-		//ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
-		$newname ='slip'.$numrand.$date1.$type;
-		$path_copy=$path.$newname;
-		$path_link="../imgslip/".$newname;
-		//คัดลอกไฟล์ไปยังโฟลเดอร์
-		move_uploaded_file($_FILES['o_slip']['tmp_name'],$path_copy);  
-	}else{
-		$newname='';
-	}
+               <i class="fas fa-shipping-fast"></i>
+                <b>เลขพัสดุ : </b> <font color="#ff0000"> <?php echo $rowdetail['o_ems'] ; ?>  </font></h4>
+                <h4><i class="fas fa-clock"></i> <b>วันที่ส่ง : </b><font color="#ffa500"><?php echo date('d/m/Y H:i:s' ,strtotime($rowdetail['o_ems_date'])); ?> น. </font></h4>
+               
 
-	//update data 
-	$sql = "UPDATE order_head SET
-    b_id='$b_id',
-    o_slip_date='$o_slip_date',
-    o_slip_total='$o_slip_total',
-    o_status=2,
-    o_slip='$newname'
-	WHERE o_id='$o_id' 
-	 ";
+          
+                <?php }else{ ?>
+                    <i class="fas fa-user-tie"></i>
+                    <b>ชื่อผู้รับ : </b><?php echo $rowdetail['o_name']; ?> <br><br>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <b>ที่อยู่จัดส่ง :</b><?php echo $rowdetail['o_addr']; ?> <br><br>
+                    <i class="fas fa-phone-square-alt"></i>
+                    <b>เบอร์โทร : </b><?php echo $rowdetail['o_phone']; ?> <br><br>
+                    <i class="fas fa-envelope"></i>
+                    <b>อีเมล :  </b><?php echo $rowdetail['o_email']; ?> <br><br>
+                    <i class="fas fa-clock"></i>
+                    <b>วันที่สั่งซื้อ : </b><?php echo $rowdetail['o_dttm']; ?> <br><br>
+                    <i class="fas fa-star-half-alt"></i>
+                    <b>สถานะ :  </b><?php
+                            $st = $rowdetail['o_status'];
+                            if ($st == 1) {
+                                echo '<font color="blue">';
+                                echo 'รอการชำระเงิน';
+                            } elseif ($st == 2) {
+                                echo '<font color="orange">';
+                                echo 'ชำระเงินแล้ว';
+                            } elseif ($st == 3) {
+                                echo '<font color="green">';
+                                echo 'ตรวจสอบเลข EMS';
+                            } else {
+                                echo 'ยกเลิก';
+                            }
+                            echo '</font>';
+                            ?>
+               
+                </h4>
+                <?php } ?>
 
-	$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
-
-	// echo '<pre>';
-	// echo $sql;
-	// echo '</pre>';
-	// exit;
-	
-	//ปิดการเชื่อมต่อ database
-	mysqli_close($conn);
-	//จาวาสคริปแสดงข้อความเมื่อบันทึกเสร็จและกระโดดกลับไปหน้าฟอร์ม
-	
-	if($result){
-	echo "<script type='text/javascript'>";
-	echo "alert('แจ้งชำระเงินสำเร็จ');";
-	echo "window.location = 'payment_detail.php?o_id=$o_id'; ";
-	echo "</script>";
-	}else{
-	echo "<script type='text/javascript'>";
-	echo "alert('Error!!');";
-	echo "window.location = 'index.php'; ";
-	echo "</script>";
-}
+                <br><br>
+                <table class="table table-bordered table-hover table-striped">
+                    <tr>
+                        <th width="5%" bgcolor="#EAEAEA" >ลำดับ</th>
+                        <th width="10%" bgcolor="#EAEAEA" >รูป</th>
+                        <th width="55%" bgcolor="#EAEAEA" >สินค้า</th>
+                        <th width="10%" bgcolor="#EAEAEA">ราคา</th>
+                        <th width="10%"  bgcolor="#EAEAEA">จำนวน</th>
+                        <th width="5%"  bgcolor="#EAEAEA">รวม(บาท)</th>
+                    </tr>
+                    <?php
+                    $total = 0;
+                    foreach ($rscartdetail as $row) {
+                        $total += $row["d_subtotal"]; //ราคารวมทั้งออเดอร์
+                        echo "<tr>";
+                        echo "<td>" . @$i += 1 . "</td>";
+                        echo "<td>" . "<img src='../pimg/" . $row['p_img'] . "' width='100'>" . "</td>";
+                        echo "<td>" . $row["p_name"] . "</td>";
+                        echo "<td align='right'>" . number_format($row["p_price"], 2) . "</td>";
+                        echo "<td align='right'>" . number_format($row["d_qty"]) . "</td>";
+                        echo "<td align='right'>" . number_format($row["d_subtotal"], 2) . "</td>";
+                        //remove product
+                        echo "</tr>";
+                    } //close foreach
+                    echo "<tr>";
+                    echo "<td colspan='5' bgcolor='#CEE7FF' align='center'><b>ราคารวม</b></td>";
+                    echo "<td align='right' bgcolor='#CEE7FF'>" . "<b>" . number_format($total, 2) . "</b>" . "</td>";
+                    echo "</tr>";
+                    ?>
+                </table>
+                <h4><b><i class="fas fa-info-circle"></i> แสดงรายละเอียดธนาคารที่โอนเงิน</b></h4>
+                <div class="col-sm-6">
+                    ธนาคารที่โอนเงิน : <?php echo $rowdetail['b_name']; ?><br>
+                    เลขบัญชี : <?php echo $rowdetail['b_number']; ?> <br>
+                    จำนวนเงินที่โอน : <?php echo $rowdetail['o_slip_total']; ?> <br>
+                    วัน/เดือน/ปี : <?php echo $rowdetail['o_slip_date']; ?> <br>
+                    <br>
+                    <img src="../imgslip/<?php echo $rowdetail['o_slip']; ?>" width="100%">
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <?php include('footer.php'); //footer
+    ?>
+</body>
+<?php include('js.php'); //js
 ?>

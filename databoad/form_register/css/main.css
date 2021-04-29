@@ -162,11 +162,11 @@ h6 {
    #BACKGROUND
    ========================================================================== */
 .bg-blue {
-  background: #31556a;
+  background: #BCD1DC;
 }
 
 .bg-red {
-  background: #fa4251;
+  background: #BCD1DC;
 }
 
 .bg-gra-01 {
@@ -178,11 +178,11 @@ h6 {
 }
 
 .bg-gra-02 {
-  background: -webkit-gradient(linear, left bottom, right top, from(#fc2c77), to(#6c4079));
-  background: -webkit-linear-gradient(bottom left, #fc2c77 0%, #6c4079 100%);
-  background: -moz-linear-gradient(bottom left, #fc2c77 0%, #6c4079 100%);
-  background: -o-linear-gradient(bottom left, #fc2c77 0%, #6c4079 100%);
-  background: linear-gradient(to top right, #fc2c77 0%, #6c4079 100%);
+  background: -webkit-gradient(linear, left bottom, right top, from(#ffffff), to(#31556a));
+  background: -webkit-linear-gradient(bottom left, #ffffff 0%, #31556a 100%);
+  background: -moz-linear-gradient(bottom left, #ffffff 0%, #31556a 100%);
+  background: -o-linear-gradient(bottom left, #ffffff 0%, #31556a 100%);
+  background: linear-gradient(to top right, #ffffff 0%, #31556a 100%);
 }
 
 /* ==========================================================================
@@ -287,18 +287,18 @@ h6 {
 }
 
 .btn--blue {
-  background: #31556a;
+  background: #138496;
 }
 
 .btn--blue:hover {
-  background: #31556a;
+  background: #0c5864;
 }
 
 /* ==========================================================================
    #DATE PICKER
    ========================================================================== */
 td.active {
-  background-color: #31556a;
+  background-color: #BCD1DC;
 }
 
 input[type="date" i] {
