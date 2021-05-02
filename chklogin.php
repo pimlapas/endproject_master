@@ -23,6 +23,7 @@ if (isset($_POST['m_username'])) {
 
     // exit;
 
+
     if (mysqli_num_rows($result) == 1) {
 
         $row = mysqli_fetch_array($result);
@@ -34,14 +35,17 @@ if (isset($_POST['m_username'])) {
         $_SESSION["m_email"] = $row["m_email"];
         $_SESSION["m_phone"] = $row["m_phone"];
         
+        $ip = $_SERVER['REMOTE_ADDR'];  
 
 
         if ($_SESSION["m_level"] == "ADMIN") { //ถ้าเป็น admin ให้กระโดดไปหน้า admin page
+            
+             
 
             //echo 'R U ADMIN';
             $ref_m_id = $_SESSION["m_id"];
-            $sql2 = "INSERT INTO tbl_login_log (ref_m_id) VALUES ($ref_m_id)";
-            $result2 = mysqli_query($conn, $sql2) or die("Error in query: $sql " . mysqli_error($conn));
+            $sql2 = "INSERT INTO tbl_login_log (ref_m_id, ip) VALUES ($ref_m_id, '$ip')";
+            $result2 = mysqli_query($conn, $sql2) or die("Error in query: $sql2 " . mysqli_error($conn));
 
 
             Header("Location: databoad/admin/");
@@ -49,6 +53,10 @@ if (isset($_POST['m_username'])) {
 
 
         if ($_SESSION["m_level"] == "SELLER"){
+            $ref_m_id = $_SESSION["m_id"];
+            $sql2 = "INSERT INTO tbl_login_log (ref_m_id, ip) VALUES ($ref_m_id, '$ip')";
+            $result2 = mysqli_query($conn, $sql2) or die("Error in query: $sql2 " . mysqli_error($conn));
+
             Header("Location: databoad/seller/");
         }
 
@@ -63,8 +71,8 @@ if (isset($_POST['m_username'])) {
 
             // echo 'ref_m_id = '.$ref_m_id;
             // exit;     
-            $sql2 = "INSERT INTO tbl_login_log (ref_m_id) VALUES ($ref_m_id)";
-            $result2 = mysqli_query($conn, $sql2) or die("Error in query: $sql " . mysqli_error($conn));
+            $sql2 = "INSERT INTO tbl_login_log (ref_m_id, ip) VALUES ($ref_m_id, '$ip')";
+            $result2 = mysqli_query($conn, $sql2) or die("Error in query: $sql2 " . mysqli_error($conn));
 
             // echo $sql2;
 

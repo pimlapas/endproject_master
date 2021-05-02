@@ -14,9 +14,9 @@ $rsorder = mysqli_query($conn, $queryorder);
             <th width="10%">
                 <center>ราคา</center>
             </th>
-            <th width="5%">สลีป</th>
-            <th width="10%">EMS</th>
-            <th width="5%">view</th>
+            <th width="5%">สลิป</th>
+            <th width="10%">เลขพัสดุ</th>
+            <th width="5%">ดู</th>
         </tr>
     </thead>
     <tbody>

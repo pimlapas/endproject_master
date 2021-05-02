@@ -1,7 +1,6 @@
 <?php
 session_start();
- print_r($_SESSION);
- 
+/*  print_r($_SESSION); */ 
  /* unset($_SESSION['ref_m_id']);
  unset($_SESSION['cart']);
  */

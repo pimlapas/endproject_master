@@ -42,7 +42,7 @@
                                 <select name="m_level">
                                     <option disabled="disabled" selected="selected">เลือกสิทธิ์การใช้งาน</option>
                                     <option value="MEMBER">ผู้ซื้อ</option>
-                                    <option value="MEMBER">ผู้ขาย</option>
+                                    <option value="SELLER">ผู้ขาย</option>
                                 </select>
                                 <div class="select-dropdown"></div>
                             </div>

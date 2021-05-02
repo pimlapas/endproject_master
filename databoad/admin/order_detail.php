@@ -12,6 +12,7 @@ $rowdetail = mysqli_fetch_array($rscartdetail);
 // print_r($rowdetail);
 // echo '</pre>';
 ?>
+<link href="../../fontawesome/css/all.css" rel="stylesheet">
 
 <body>
     <?php include('nav.php'); //menu
@@ -24,32 +25,42 @@ $rowdetail = mysqli_fetch_array($rscartdetail);
             </div>
             <div class="col-md-10">
                 <h3 align="center"> รายละเอียดการสั่งซื้อ </h3>
-                <h4>
-                    OrderID : <?php echo $rowdetail['o_id']; ?> <br>
-                    ส่งไปที่ : <?php echo $rowdetail['o_name']; ?> <br>
-                    <?php echo $rowdetail['o_addr']; ?> <br>
-                    เบอร์โทร : <?php echo $rowdetail['o_phone']; ?> <br>
-                    อีเมล : <?php echo $rowdetail['o_email']; ?> <br>
-                    วันที่สั่งซื้อ : <?php echo $rowdetail['o_dttm']; ?> <br>
-                    สถานะ : <?php
-                            $st = $rowdetail['o_status'];
-                            echo '<font color="blue">';
-                            if ($st == 1) {
-                                echo 'รอการชำระเงิน';
-                            } elseif ($st == 2) {
-                                echo 'ชำระเงินแล้ว';
-                            } elseif ($st == 3) {
-                                echo 'ตรวจสอบเลข EMS';
-                            } else {
-                                echo 'ยกเลิก';
-                            }
-                            echo '</font>';
-                            ?>
-                </h4>
+                <h4 align="center"><i class="fas fa-neuter"></i> <b>OrderID : <?php echo $rowdetail['o_id']; ?> </b></h4>
+
+               
+<h4>
+
+<i class="fas fa-user-tie"></i>
+<b>ชื่อผู้รับ : </b><?php echo $rowdetail['o_name']; ?> <br><br>
+<i class="fas fa-map-marker-alt"></i>
+<b>ที่อยู่จัดส่ง :</b><?php echo $rowdetail['o_addr']; ?> <br><br>
+<i class="fas fa-phone-square-alt"></i>
+<b>เบอร์โทร : </b><?php echo $rowdetail['o_phone']; ?> <br><br>
+<i class="fas fa-envelope"></i>
+<b>อีเมล :  </b><?php echo $rowdetail['o_email']; ?> <br><br>
+<i class="fas fa-clock"></i>
+<b>วันที่สั่งซื้อ : </b><?php echo $rowdetail['o_dttm']; ?> <br><br>
+<i class="fas fa-star-half-alt"></i>
+<b>สถานะ :  </b><?php
+   $st = $rowdetail['o_status'];
+   echo '<font color="blue">';
+   if ($st == 1) {
+       echo 'รอการชำระเงิน';
+   } elseif ($st == 2) {
+       echo 'ชำระเงินแล้ว';
+   } elseif ($st == 3) {
+       echo 'ตรวจสอบเลข EMS';
+   } else {
+       echo 'ยกเลิก';
+   }
+   echo '</font>';
+   ?>
+
+</h4><br><br>
                 <table class="table table-bordered table-hover table-striped">
                     <tr>
-                        <th width="5%" bgcolor="#EAEAEA">#</th>
-                        <th width="10%" bgcolor="#EAEAEA">img</th>
+                        <th width="5%" bgcolor="#EAEAEA">ลำดับ</th>
+                        <th width="10%" bgcolor="#EAEAEA">รูป</th>
                         <th width="55%" bgcolor="#EAEAEA">สินค้า</th>
                         <th width="10%" align="center" bgcolor="#EAEAEA">ราคา</th>
                         <th width="10%" align="center" bgcolor="#EAEAEA">จำนวน</th>
@@ -64,7 +75,7 @@ $rowdetail = mysqli_fetch_array($rscartdetail);
                         echo "<td>" . "<img src='../pimg/" . $row['p_img'] . "' width='100'>" . "</td>";
                         echo "<td>" . $row["p_name"] . "</td>";
                         echo "<td align='right'>" . number_format($row["p_price"], 2) . "</td>";
-                        echo "<td align='right'>" . number_format($row["d_qty"], 2) . "</td>";
+                        echo "<td align='right'>" . number_format($row["d_qty"]) . "</td>";
                         echo "<td align='right'>" . number_format($row["d_subtotal"], 2) . "</td>";
                         //remove product
                         echo "</tr>";

@@ -48,7 +48,7 @@ $result = mysqli_query($conn, $query);
       ราคา :
     </div>
     <div class="col-sm-2">
-      <input type="number" name="p_price" required class="form-control">
+      <input type="number" name="p_price" min="1" required class="form-control">
     </div>
   </div>
 

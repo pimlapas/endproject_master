@@ -13,6 +13,8 @@
       <div class="col-md-10">
         <h4>::จัดการสินค้า::
           <a href="prd.php?act=add" class="btn btn-info"> +ADD </a>
+          <a href="prd.php?act=new" class="btn btn-success"> ADMIN </a>
+
         </h4>
        <?php 
        $act = (isset($_GET['act']) ? $_GET['act'] : '');
@@ -20,9 +22,13 @@
           include('prd_form_add.php');
         }elseif($act=='edit'){
           include('prd_form_edit.php');
+        }elseif($act == 'new'){
+          include('prd2.php');
         }else{
           include('prd_list.php');
+
         }
+        
        ?>
       </div>
     </div>

@@ -18,8 +18,8 @@ include 'navbar.php';
 include 'list_prd_by_search.php';
 include 'footer.php';
 
-$act = (isset($_GET['act']) ? $_GET['act'] : '');
-
+/* $act = (isset($_GET['act']) ? $_GET['act'] : '');
+ */
 ?>
 
 <!-- <body>

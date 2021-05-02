@@ -8,11 +8,11 @@ $rsorder = mysqli_query($conn, $queryorder);
 <table id="example" class="display table table-bordered table-hover table-striped">
     <thead class="thead-light">
         <tr class="danger">
-            <th width="5%">#</th>
+            <th width="5%">รหัส</th>
             <th width="40%">ชื่อลูกค้า</th>
             <th width="15%"><center>ปี/เดือน/วัน</center></th>
             <th width="10%"><center>ราคา</center></th>
-            <th width="5%">view</th>
+            <th width="5%">ดู</th>
         </tr>
     </thead>
     <tbody>

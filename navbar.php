@@ -33,7 +33,7 @@ $result = mysqli_query($conn, $query);
 
                     <form class="form-inline my-2 my-lg-0" method="get" action="index.php">
                         <input class="form-control mr-sm-2" type="search" placeholder="ค้นหาสินค้า" aria-label="Search" name="search" required>
-                        <button class="btn btn-sm btn-outline-secondary" type="submit" name="act" value="q">ค้นหา</button>
+                        <button class="btn btn-sm btn-outline-secondary" type="submit" >ค้นหา</button>
                     </form>
 
                 </div>

@@ -40,15 +40,19 @@ $rowdetail = mysqli_fetch_array($rscartdetail);
                <i class="fas fa-star-half-alt"></i>
                <b>สถานะ :  </b><?php
                        $st = $rowdetail['o_status'];
-                       echo '<font color="blue">';
+                       
                        if ($st == 1) {
-                           echo 'รอการชำระเงิน';
+                            echo '<font color="blue">';
+                            echo 'รอการชำระเงิน';
                        } elseif ($st == 2) {
-                           echo 'ชำระเงินแล้ว';
+                            echo '<font color="orange">';
+                            echo 'ชำระเงินแล้ว';
                        } elseif ($st == 3) {
-                           echo 'ตรวจสอบเลข EMS';
+                            echo '<font color="green">';
+                            echo 'ตรวจสอบเลข EMS';
                        } else {
-                           echo 'ยกเลิก';
+                            echo '<font color="red">';
+                            echo 'ยกเลิก';
                        }
                        echo '</font>';
                        ?>

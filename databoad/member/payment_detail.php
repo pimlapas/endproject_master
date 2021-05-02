@@ -45,7 +45,7 @@ $rsbank = mysqli_query($conn, $querybank);
                <b>อีเมล :  </b><?php echo $rowdetail['o_email']; ?> <br><br>
                <i class="fas fa-clock"></i>
                <b>วันที่สั่งซื้อ : </b><?php echo $rowdetail['o_dttm']; ?> <br><br>
-               -------------------------------------------------------------<br><br>
+               <br><br>
 
                <i class="fas fa-shipping-fast"></i>
                 <b>เลขพัสดุ : </b> <font color="#ff0000"> <?php echo $rowdetail['o_ems'] ; ?>  </font></h4>
